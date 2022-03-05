@@ -1,0 +1,36 @@
+@use '../../index.scss' as base;
+
+.dashboard {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.dashboard-header {
+    width: 25vw;
+    height: auto;
+}
+
+.dashboard-card {
+    width: 40vw;
+    height: 50vh;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px #BE4E61;
+}
+
+.dashboard-image {
+    width: auto;
+    height: 80%;
+}
+
+.dashboard-text { 
+    letter-spacing: 1px;
+    color:#5e5e5e;
+    margin-top: 10px;
+
+}
