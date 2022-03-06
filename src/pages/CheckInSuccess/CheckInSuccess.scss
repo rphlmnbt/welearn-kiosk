@@ -1,0 +1,29 @@
+@use '../../index.scss' as base;
+
+.checkin-success {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.checkin-header {
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+}
+
+.checkin-text {
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 30px;
+    text-align: center;
+    margin: 0;
+}

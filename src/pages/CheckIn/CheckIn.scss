@@ -1,0 +1,26 @@
+@use '../../index.scss' as base;
+
+.checkin {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.qrcode-scanner {
+    background-color: white;
+    height: 26vh;
+    width: 30vw;
+    border-radius: 10px;
+}
+
+.checkin-text {
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 40px;
+    text-align: center;
+}
