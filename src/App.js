@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CheckIn from './pages/CheckIn/CheckIn';
 import CheckInSuccess from './pages/CheckInSuccess/CheckInSuccess';
+import CheckOut from './pages/CheckOut/CheckOut';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/" element={<Dashboard />} />
           <Route path='/checkin' element={<CheckIn/>} />
           <Route path='/checkin-success' element={<CheckInSuccess />} />
+          <Route path='/checkout' element={<CheckOut />} />
         </Routes>
       </Router>
     </div>

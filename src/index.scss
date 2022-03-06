@@ -1,21 +1,21 @@
 $font-stack: Raleway, sans-serif;
 $primary-color: #EF4765;
+$secondary-color: #BE4E61;
 
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
 
 body {
-  margin: 0;
   font-family: $font-stack;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./assets/bg.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  padding: 0;
+  background: center/ cover no-repeat url(./assets/bg.svg)
+
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: $font-stack;
 }

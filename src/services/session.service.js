@@ -6,10 +6,17 @@ const SESSION_URL = env.API_URL + '/session'
 const getSession = (
     uuid_session
 ) => {
-    console.log(SESSION_URL)
     return axios.get(SESSION_URL + `/${uuid_session}`)
 }
 
+const deleteSession = ( 
+    uuid_session
+) => {
+    return axios.put(SESSION_URL + `/del/${uuid_session}`)
+}
+
+
 export default {
-    getSession
+    getSession,
+    deleteSession
 }
