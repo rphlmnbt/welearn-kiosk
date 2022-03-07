@@ -1,0 +1,63 @@
+@use '../../index.scss' as base;
+
+.login {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.splash {
+    background-color: base.$secondary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+    h3 {
+        color:white;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    p {
+        color: white;
+        font-weight: 500;
+    }
+}
+
+.form {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    .form-control.form-control {
+        border-radius: 0%;
+    }
+
+    input {
+        margin-bottom:5px;
+    }
+    
+    .form-title {
+        letter-spacing: 1px;
+        font-size: 30px;
+        font-weight: 600;
+        margin: 0;
+        color: base.$text-color;
+    }
+    .form-label {
+        text-align: left;
+        font-family: 'Raleway';
+        font-weight: 600;
+        color: base.$text-color;
+    }
+}
+
+
+
