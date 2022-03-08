@@ -16,7 +16,7 @@ export default function Dashboard() {
                     </Link>
                 </Col>
                 <Col>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                    <Link to="/checkout" style={{ textDecoration: 'none' }}>
                         <div className='dashboard-card mx-auto p-3 d-flex justify-content-center align-items-center flex-column'>
                             <img src={require('../../assets/check-out.png')} className='dashboard-image' />
                             <h4 className='dashboard-text'>CHECK OUT</h4>
@@ -36,7 +36,7 @@ export default function Dashboard() {
                     </Link>
                 </Col>
                 <Col>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
                         <div className='dashboard-card mx-auto p-3 d-flex justify-content-center align-items-center flex-column'>
                             <img src={require('../../assets/librarian.png')} className='dashboard-image' />
                             <h4 className='dashboard-text'>ADMIN TOOLS</h4>

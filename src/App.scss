@@ -1,1 +1,16 @@
+@use './index.scss' as base;
 @import "~bootstrap/scss/bootstrap";
+
+
+
+.btn.welearn-btn {
+    background-color: base.$primary-color;
+    border: 1px base.$primary-color;
+    font-weight: 600;
+
+    &:hover {
+        background-color: base.$secondary-color;
+        border: 1px base.$secondary-color;
+    }
+
+}

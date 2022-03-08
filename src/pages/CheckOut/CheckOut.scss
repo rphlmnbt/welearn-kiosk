@@ -1,6 +1,6 @@
 @use '../../index.scss' as base;
 
-.checkin {
+.checkout {
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -17,7 +17,7 @@
     border-radius: 10px;
 }
 
-.checkin-text {
+.checkout-text {
     font-weight: 600;
     color: white;
     letter-spacing: 1px;

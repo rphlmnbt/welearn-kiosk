@@ -3,14 +3,23 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { QrReader } from 'react-qr-reader';
 import sessionService from '../../services/session.service';
-import './CheckIn.scss'
+import './CheckOut.scss'
 import BackBtn from '../../components/BackBtn/BackBtn';
+import GenericModal from '../../components/Modal/GenericModal';
 
-export default function CheckIn() {
+export default function CheckOut() {
     const navigate = useNavigate();
+    const [modalShow, setModalShow] = useState(false)
 
     return (
-        <Container className='checkin'>
+        <Container className='checkout'>
+            <GenericModal 
+                show={modalShow}
+                onHide={() => {
+                    setModalShow(false)
+                    navigate('/')
+                }}
+            />
             <BackBtn link='/'/>
             <Row className='w-100'>
                 <Col>
@@ -25,11 +34,10 @@ export default function CheckIn() {
                         <QrReader
                             onResult={(result, error) => {
                             if (!!result) {
-                                sessionService.getSession(result?.text)
+                                sessionService.deleteSession(result?.text)
                                 .then(response => {
                                     if (response.status == 200) {
-                                        const session = response.data
-                                        navigate('/checkin-success', {state: session})
+                                        setModalShow(true)
                                     }
                                 }).catch(error => {
                                     console.log(error)
@@ -50,7 +58,7 @@ export default function CheckIn() {
             </Row>
             <Row className='w-100 p-5'>
                 <Col>
-                    <h3 className='checkin-text'>PLEASE SCAN YOUR QR CODE</h3>         
+                    <h3 className='checkout-text'>PLEASE SCAN YOUR QR CODE</h3>         
                 </Col>
             </Row>
         </Container>
