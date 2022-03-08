@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import BackBtn from '../../components/BackBtn/BackBtn'
+import notificationService from '../../services/notification.service'
 import './CheckInSuccess.scss'
 
 export default function CheckInSuccess({location}) {
     const { state } = useLocation();
+    useEffect(async ()=> {
+        await notificationService.sendNotifications(state.users)
+    }, [])
     console.log(state);
     return (
         <Container className='checkin-success'>
