@@ -5,6 +5,7 @@ import { QrReader } from 'react-qr-reader';
 import sessionService from '../../services/session.service';
 import './CheckIn.scss'
 import BackBtn from '../../components/BackBtn/BackBtn';
+import notificationService from '../../services/notification.service';
 
 export default function CheckIn() {
     const navigate = useNavigate();
@@ -23,11 +24,12 @@ export default function CheckIn() {
                 <Col>
                     <div className='qrcode-scanner mx-auto p-3'>
                         <QrReader
-                            onResult={(result, error) => {
+                            onResult={async (result, error) => {
                             if (!!result) {
-                                sessionService.getSession(result?.text)
-                                .then(response => {
+                                await sessionService.getSession(result?.text)
+                                .then(async response => {
                                     if (response.status == 200) {
+                                        console.log(response.data.users)
                                         const session = response.data
                                         navigate('/checkin-success', {state: session})
                                     }
@@ -42,6 +44,7 @@ export default function CheckIn() {
                             }
                             }}
                             videoStyle={{width: '100%', height: 'auto'}}
+                            scanDelay={5000}
                             
                         />
                     </div>
