@@ -6,6 +6,7 @@ import CheckIn from './pages/CheckIn/CheckIn';
 import CheckInSuccess from './pages/CheckInSuccess/CheckInSuccess';
 import CheckOut from './pages/CheckOut/CheckOut';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
+import ViewReservations from './pages/ViewReservations/ViewReservations';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/checkin-success' element={<CheckInSuccess />} />
           <Route path='/checkout' element={<CheckOut />} />
           <Route path='/login' element={<AdminLogin />} />
+          <Route path='/reservations' element={<ViewReservations />} />
         </Routes>
       </Router>
     </div>

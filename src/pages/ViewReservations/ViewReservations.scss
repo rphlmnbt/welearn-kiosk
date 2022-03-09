@@ -1,0 +1,26 @@
+@use '../../index.scss' as base;
+@import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+// @import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+@import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+//@import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
+
+
+.reservations {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.rw {
+    width: 90vw;
+    height: 75vh;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 3px 3px #BE4E61;
+    margin-bottom: 35px;
+    padding-top: 15px;
+}

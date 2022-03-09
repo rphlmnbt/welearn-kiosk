@@ -28,7 +28,7 @@ export default function Dashboard() {
             <Row className='w-100'>
                 
                 <Col>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                    <Link to="reservations" style={{ textDecoration: 'none' }}>
                         <div className='dashboard-card mx-auto p-3 d-flex justify-content-center align-items-center flex-column'>
                             <img src={require('../../assets/booking.png')} className='dashboard-image' />
                             <h4 className='dashboard-text'>VIEW RESERVATIONS</h4>
