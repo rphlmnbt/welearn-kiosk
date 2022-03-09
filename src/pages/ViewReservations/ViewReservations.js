@@ -48,9 +48,11 @@ export default function ViewReservations() {
     return (
         <Container className='reservations'>
             <BackBtn link='/'/>
-            <Col>
-                <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
-            </Col>
+            <Row>
+                <Col>
+                    <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
+                </Col>
+            </Row>
             <Row className='rw'>
                 <Col>
                 <ToolkitProvider

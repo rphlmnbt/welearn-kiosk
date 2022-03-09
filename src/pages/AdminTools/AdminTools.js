@@ -6,6 +6,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import paginationFactory, {  } from 'react-bootstrap-table2-paginator';
 import sessionService from '../../services/session.service';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminTools() {
 
@@ -17,6 +18,8 @@ export default function AdminTools() {
             console.log(error)
         })
     }, []);
+
+    const navigate = useNavigate();
 
     const [data, setData] = useState([]);
 
@@ -49,7 +52,8 @@ export default function AdminTools() {
         mode: 'radio',
         clickToSelect: true,
         onSelect: (row, isSelect, rowIndex, e) => {
-          console.log(row);
+          const session = row
+          navigate('/edit-session', {state: session})
         },
         bgColor: '#EF4765'
       };
@@ -58,9 +62,11 @@ export default function AdminTools() {
     return (
         <Container className='reservations'>
             <BackBtn link='/'/>
-            <Col>
-                <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
-            </Col>
+            <Row>
+                <Col>
+                    <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
+                </Col>
+            </Row>
             <Row className='rw'>
                 <Col>
                 <ToolkitProvider

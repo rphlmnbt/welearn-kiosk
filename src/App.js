@@ -8,6 +8,7 @@ import CheckOut from './pages/CheckOut/CheckOut';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
 import ViewReservations from './pages/ViewReservations/ViewReservations';
 import AdminTools from './pages/AdminTools/AdminTools';
+import EditSession from './pages/EditSession/EditSession';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/login' element={<AdminLogin />} />
           <Route path='/reservations' element={<ViewReservations />} />
           <Route path='/admin-tools' element={<AdminTools />} />
+          <Route path='/edit-session' element={<EditSession />} />
         </Routes>
       </Router>
     </div>
