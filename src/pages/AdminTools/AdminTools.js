@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import './AdminTools.scss'
 import BackBtn from '../../components/BackBtn/BackBtn';
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -79,21 +79,26 @@ export default function AdminTools() {
                         {
                             props => (
                                 <>
-                                    <div className="ml-2 my-2" style={{float:'left'}}>
+                                    <div className="ml-2 my-2 w-100" style={{float:'left'}}>
                                         < Row >
-                                            <Col lg={10} sm={12} >
+                                            <Col sm={5} >
                                                 <SearchBar  
                                                     {...props.searchProps} 
                                                     style={{ width: "200px"}}
                                                     
                                                 />
                                             </Col>
-                                            <Col lg={2} sm={12}>
+                                            <Col className='pl-0'>
                                                 <ClearSearchButton 
                                                     {...props.searchProps} 
                                                     className="welearn-btn"
                                                 />
+                                                <Button 
+                                                    className="welearn-btn font-weight-bold m-1"
+                                                >＋
+                                                </Button>
                                             </Col>
+                                            
                                         </Row> 
                                     </div>
                                     <div className="mx-2">

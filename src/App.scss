@@ -15,3 +15,15 @@
     }
 
 }
+
+.btn.sub-btn {
+    background-color: base.$text-color;
+    border: 1px base.$text-color;
+    font-weight: 600;
+    color: white;
+
+    &:hover {
+        background-color: #838383;
+        border: 1px #838383;
+    }
+}
