@@ -7,6 +7,7 @@ import schema from './AdminLogin.schema'
 import logo from '../../assets/logo.png'
 import './AdminLogin.scss'
 import BackBtn from '../../components/BackBtn/BackBtn'
+import adminService from '../../services/admin.service'
 
 export default function AdminLogin() {
     const formRef = useRef()
@@ -14,10 +15,14 @@ export default function AdminLogin() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const handleSubmit = (values) => {
+        adminService.logIn(values.email,values.password)
+    }
+
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={console.log("login")}
+            onSubmit={handleSubmit}
             innerRef = {formRef}
             initialValues={{
                 email: '',
