@@ -15,8 +15,12 @@ const deleteSession = (
     return axios.put(SESSION_URL + `/del/${uuid_session}`)
 }
 
+const getAllSessions = () => {
+    return axios.get(SESSION_URL)
+}
 
 export default {
     getSession,
-    deleteSession
+    deleteSession,
+    getAllSessions
 }
