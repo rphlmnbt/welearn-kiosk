@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import './ViewReservations.scss'
+import './AdminTools.scss'
 import BackBtn from '../../components/BackBtn/BackBtn';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import paginationFactory, {  } from 'react-bootstrap-table2-paginator';
 import sessionService from '../../services/session.service';
 
-export default function ViewReservations() {
+export default function AdminTools() {
 
     useEffect(() => {
         sessionService.getAllSessions()
@@ -45,6 +45,16 @@ export default function ViewReservations() {
 
     const { SearchBar, ClearSearchButton } = Search;
 
+    const selectRow = {
+        mode: 'radio',
+        clickToSelect: true,
+        onSelect: (row, isSelect, rowIndex, e) => {
+          console.log(row);
+        },
+        bgColor: '#EF4765'
+      };
+      
+
     return (
         <Container className='reservations'>
             <BackBtn link='/'/>
@@ -64,7 +74,7 @@ export default function ViewReservations() {
                             props => (
                                 <>
                                     <div className="ml-2 my-2" style={{float:'left'}}>
-                                        < Row>
+                                        < Row >
                                             <Col lg={10} sm={12} >
                                                 <SearchBar  
                                                     {...props.searchProps} 
@@ -84,11 +94,12 @@ export default function ViewReservations() {
                                         <BootstrapTable 
                                             defaultSorted={defaultSorted}
                                             pagination={pagination}
+                                            selectRow={ selectRow }
                                             {...props.baseProps}
                                             cellStyle={{
                                                 textOverflow: 'ellipsis',
                                                 whiteSpace: 'nowrap',
-                                                overflow: 'hidden'            
+                                                overflow: 'hidden'
                                             }}
                                             noDataIndication={ 'no results found' }
                                             

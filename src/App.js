@@ -7,6 +7,7 @@ import CheckInSuccess from './pages/CheckInSuccess/CheckInSuccess';
 import CheckOut from './pages/CheckOut/CheckOut';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
 import ViewReservations from './pages/ViewReservations/ViewReservations';
+import AdminTools from './pages/AdminTools/AdminTools';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/checkout' element={<CheckOut />} />
           <Route path='/login' element={<AdminLogin />} />
           <Route path='/reservations' element={<ViewReservations />} />
+          <Route path='/admin-tools' element={<AdminTools />} />
         </Routes>
       </Router>
     </div>

@@ -8,15 +8,25 @@ import logo from '../../assets/logo.png'
 import './AdminLogin.scss'
 import BackBtn from '../../components/BackBtn/BackBtn'
 import adminService from '../../services/admin.service'
+import { useNavigate } from 'react-router-dom'
 
 export default function AdminLogin() {
     const formRef = useRef()
+    const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleSubmit = (values) => {
         adminService.logIn(values.email,values.password)
+        .then(response => {
+            console.log(response.data)
+            if (response.status == 200) {
+                navigate('/admin-tools')
+            }
+        }).catch(error => {
+            console.log(error)
+        })
     }
 
     return (

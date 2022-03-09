@@ -7,14 +7,9 @@ const logIn = (
     email,
     password
 ) => {
-    axios.post(ADMIN_URL + `/adminSignIn`, {
+    return axios.post(ADMIN_URL + `/adminSignIn`, {
         email,
         password
-    })
-    .then(response => {
-        console.log(response.data)
-    }).catch(error => {
-        console.log(error)
     })
 }
 
