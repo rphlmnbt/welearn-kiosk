@@ -93,7 +93,7 @@ export default function AdminTools() {
                                                     {...props.searchProps} 
                                                     className="welearn-btn"
                                                 />
-                                                <Button 
+                                                <Button onClick={()=>navigate('/add-session')}
                                                     className="welearn-btn font-weight-bold m-1"
                                                 >＋
                                                 </Button>
