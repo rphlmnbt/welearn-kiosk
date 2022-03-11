@@ -16,7 +16,7 @@ const schema = yup.object().shape({
                 .max(50, 'Too Long!')
                 .nullable(),
 
-    room_name: yup.string()
+    uuid_room: yup.string()
                 .min(0, "Invalid")
                 .nullable()            
 })

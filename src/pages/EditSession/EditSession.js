@@ -192,15 +192,15 @@ export default function EditSession() {
                                         </Row>
                                         <Row className="g-5 mb-3">
                                             <Col md>
-                                                <Form.Group controlId="room_name">
+                                                <Form.Group controlId="uuid_room">
                                                     <Form.Label className='edit-label'>Room Name</Form.Label>
                                                      <Form.Select 
                                                         aria-label="Default select example"
-                                                        name="room_name" 
+                                                        name="uuid_room" 
                                                         value={values.uuid_room} 
                                                         onChange={handleChange}
-                                                        isValid={touched.room_name && !errors.room_name} 
-                                                        isInvalid={touched.room_name && !!errors.room_name} 
+                                                        isValid={touched.uuid_room && !errors.uuid_room} 
+                                                        isInvalid={touched.uuid_room && !!errors.uuid_room} 
                                                         placeholder="Room Name" 
                                                     >
                                                         {rooms.map(element => {
@@ -209,27 +209,31 @@ export default function EditSession() {
                                                     </Form.Select>
                                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     <Form.Control.Feedback type="invalid">
-                                                        {errors.room_name}
+                                                        {errors.uuid_room}
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                             </Col>
                                         </Row>
                                         <Row className='d-flex justify-content-center'>
-                                            <Button 
-                                                type="submit" 
-                                                className="welearn-btn m-2 w-50"
-                                            >
-                                                Apply Changes
-                                            </Button>
+                                            <Col className=' d-flex justify-content-end'>
+                                                <Button 
+                                                    type="submit" 
+                                                    className="welearn-btn my-2"
+                                                >
+                                                    Apply Changes
+                                                </Button>
+                                            </Col>
+                                            <Col>
+                                                <Button 
+                                                    className="sub-btn my-2"
+                                                    onClick={deleteSession}
+                                                >
+                                                    Delete Session
+                                                </Button>
+                                            </Col>
+                                            
                                         </Row>
-                                        <Row className='d-flex justify-content-center'>
-                                            <Button 
-                                                className="sub-btn m-2 w-50"
-                                                onClick={deleteSession}
-                                            >
-                                                Delete Session
-                                            </Button>
-                                        </Row>
+                            
                                         
                                     </Form>
                                 </Row>

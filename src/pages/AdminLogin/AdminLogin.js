@@ -9,6 +9,8 @@ import './AdminLogin.scss'
 import BackBtn from '../../components/BackBtn/BackBtn'
 import adminService from '../../services/admin.service'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logIn } from '../../actions/adminAction'
 
 export default function AdminLogin() {
     const formRef = useRef()
@@ -16,16 +18,25 @@ export default function AdminLogin() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const dispatch = useDispatch()
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const OpenModal = () => setOpenModal(true);
+    const CloseModal = () => setOpenModal(false);
 
     const handleSubmit = (values) => {
         adminService.logIn(values.email,values.password)
         .then(response => {
-            console.log(response.data)
+            
             if (response.status == 200) {
+                console.log(response.data.admin)
+                dispatch(logIn(response.data.admin))
                 navigate('/admin-tools')
             }
         }).catch(error => {
             console.log(error)
+            OpenModal()
         })
     }
 
@@ -50,6 +61,25 @@ export default function AdminLogin() {
                 errors,
             }) => (
                 <Container className="login">
+                    <Modal
+                        show={openModal}
+                        onHide={CloseModal}
+                        backdrop="static"
+                        keyboard={false}
+                        centered
+                    >
+                        <Modal.Body>
+                           Invalid Credentials. Try Again!
+                        </Modal.Body>
+                        <div className='d-flex justify-content-center'>
+                            <Button 
+                                className="welearn-btn m-2 w-25"
+                                onClick={CloseModal}
+                            >
+                                Try Again
+                            </Button>
+                        </div>
+                    </Modal>
                     <BackBtn link='/'/>
                     <Row className="justify-content-center w-100 login-panel">
                         <Col lg={6} className="shadow splash">

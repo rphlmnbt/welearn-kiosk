@@ -10,7 +10,10 @@ import moment from 'moment';
 import sessionService from '../../services/session.service';
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useSelector } from 'react-redux';
+
 export default function AddSession() {
+    const uuid_user = useSelector(state => state.admin.uuid_user) 
     const formRef = useRef()
     const [rooms, setRooms] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -20,14 +23,13 @@ export default function AddSession() {
     const [time, setTime] = useState(null)
     const navigate = useNavigate()
     let [color, setColor] = useState("#EF4765");
-
     const [openModal, setOpenModal] = useState(false);
 
     const OpenModal = () => setOpenModal(true);
     const CloseModal = () => setOpenModal(false);
 
     useEffect(() => {
-        console.log(moment(date).local().toDate())
+        console.log(uuid_user)
         roomService.getRooms()
         .then(response => {
             setRooms(response.data)
@@ -36,9 +38,11 @@ export default function AddSession() {
         })
      }, [])
 
+    
+
     const handleSubmit = (values) => {
         console.log(values)
-        sessionService.createSession(values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, values.uuid_room)
+        sessionService.createSession(values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, uuid_user, values.uuid_room)
         .then(response => {
             if(response.status == 200) {
                 navigate('/admin-tools')
@@ -59,7 +63,7 @@ export default function AddSession() {
     const initialValues = {
         session_name: '',
         date: '',
-        time: '',
+        time: "7:00 AM to 8:00 AM",
         uuid_room: ''
     }
 
@@ -183,24 +187,25 @@ export default function AddSession() {
                                         </Row>
                                         <Row className="g-5 mb-3">
                                             <Col md>
-                                                <Form.Group controlId="room_name">
+                                                <Form.Group controlId="uuid_room">
                                                     <Form.Label className='edit-label'>Room Name</Form.Label>
                                                      <Form.Select 
                                                         aria-label="Default select example"
-                                                        name="room_name" 
+                                                        name="uuid_room" 
                                                         value={values.uuid_room} 
                                                         onChange={handleChange}
-                                                        isValid={touched.room_name && !errors.room_name} 
-                                                        isInvalid={touched.room_name && !!errors.room_name} 
+                                                        isValid={touched.uuid_room && !errors.uuid_room} 
+                                                        isInvalid={touched.uuid_room && !!errors.uuid_room} 
                                                         placeholder="Room Name" 
                                                     >
+                                                        <option value={null}>Choose Room</option>
                                                         {rooms.map(element => {
                                                             return <option key={element.uuid_room} value={element.uuid_room}>{element.room_name}</option>
                                                         })}
                                                     </Form.Select>
                                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     <Form.Control.Feedback type="invalid">
-                                                        {errors.room_name}
+                                                        {errors.uuid_room}
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                             </Col>
