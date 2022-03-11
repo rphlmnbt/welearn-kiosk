@@ -1,0 +1,35 @@
+@use '../../index.scss' as base;
+
+.edit {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-panel {
+    width: 40vw;
+    height: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 3px 3px base.$secondary-color;
+    margin-bottom: 35px;
+    padding: 15px;
+}
+
+.edit-label {
+    font-weight: 600;
+}
+
+.box-title {
+    color: base.$text-color;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+}
+
+.welearn-btn{
+    text-align: center;
+}
