@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Container, Row, Form, Col, Button } from 'react-bootstrap'
+import { Container, Row, Form, Col, Button, Modal } from 'react-bootstrap'
 import { Formik, Field } from 'formik';
 import schema from './AddSession.schema'
 import BackBtn from '../../components/BackBtn/BackBtn';
@@ -21,6 +21,11 @@ export default function AddSession() {
     const navigate = useNavigate()
     let [color, setColor] = useState("#EF4765");
 
+    const [openModal, setOpenModal] = useState(false);
+
+    const OpenModal = () => setOpenModal(true);
+    const CloseModal = () => setOpenModal(false);
+
     useEffect(() => {
         console.log(moment(date).local().toDate())
         roomService.getRooms()
@@ -33,13 +38,14 @@ export default function AddSession() {
 
     const handleSubmit = (values) => {
         console.log(values)
-        sessionService.updateSession(uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, values.uuid_room)
-        .then(response => {
-            console.log(response)
-            navigate('/admin-tools')
-        }).catch(error => {
-            console.log(error)
-        })
+        // sessionService.updateSession(uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, values.uuid_room)
+        // .then(response => {
+        //     console.log(response)
+        //     navigate('/admin-tools')
+        // }).catch(error => {
+        //     OpenModal();
+        // })
+        OpenModal();
     }
     const override = css`
         display: block;
@@ -48,22 +54,12 @@ export default function AddSession() {
         `;
 
     const initialValues = {
-        session_name: session_name,
-        date: moment(date).local().format("YYYY-MM-DD"),
-        time: time,
+        session_name: '',
+        date: '',
+        time: '',
         room_name: ''
     }
 
-    const deleteSession = () => {
-        sessionService.deleteSession(uuid_session)
-        .then(response => {
-            if (response.status == 200) {
-                navigate('/admin-tools')
-            }
-        }).catch(error => {
-            console.log(error)
-        })
-} 
 
     if (loading) {
         return (
@@ -105,7 +101,7 @@ export default function AddSession() {
                                             Create Session
                                         </div>
                                     </Col>
-                                    <Form noValidate onSubmit={handleSubmit}>
+                                    <Form noValidate onSubmit={handleSubmit} > 
                                         <Row className="g-5 mb-3">
                                             <Col md>
                                                 <Form.Group controlId="session_name">
@@ -219,6 +215,26 @@ export default function AddSession() {
                                 </Row>
                             </Col>
                         </Row>
+
+                        <Modal
+                            show={openModal}
+                            onHide={CloseModal}
+                            backdrop="static"
+                            keyboard={false}
+                            centered
+                        >
+                            <Modal.Body>
+                            Failed! The room seems to be taken or you have other sessions for the same date and time!
+                            </Modal.Body>
+                            <div className='d-flex justify-content-center'>
+                            <Button 
+                            className="welearn-btn m-2 w-25"
+                            onClick={CloseModal}>
+                                Try Again
+                            </Button>
+                            </div>
+                        </Modal>
+
                     </Container>
                 )}
             </Formik>

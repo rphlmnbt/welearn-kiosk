@@ -6,19 +6,19 @@ const schema = yup.object().shape({
     session_name: yup.string()
                 .min(1, "Invalid")
                 .max(10, 'Too Long!')
-                .nullable(),
+                .required(),
 
     date: yup.string()
                 .max(50, 'Too Long!')
-                .nullable(),
+                .required(),
 
     time: yup.string()
                 .max(50, 'Too Long!')
-                .nullable(),
+                .required(),
 
     room_name: yup.string()
                 .min(0, "Invalid")
-                .nullable()            
+                .required(),            
 })
 
 export default schema
