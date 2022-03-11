@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Container, Row, Form, Col, Button } from 'react-bootstrap'
+import { Container, Row, Form, Col, Button, Modal } from 'react-bootstrap'
 import { Formik, Field } from 'formik';
 import schema from './EditSession.schema'
 import BackBtn from '../../components/BackBtn/BackBtn';
@@ -10,6 +10,7 @@ import moment from 'moment';
 import sessionService from '../../services/session.service';
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
+
 export default function EditSession() {
     const { state } = useLocation();
     const formRef = useRef()
@@ -18,6 +19,11 @@ export default function EditSession() {
     const navigate = useNavigate()
     let [color, setColor] = useState("#EF4765");
 
+    const [openModal, setOpenModal] = useState(false);
+
+    const OpenModal = () => setOpenModal(true);
+    const CloseModal = () => setOpenModal(false);
+
     useEffect(() => {
         console.log(moment(state.date).local().toDate())
         roomService.getRooms()
@@ -25,17 +31,22 @@ export default function EditSession() {
             setRooms(response.data)
             console.log(response.data)
             setLoading(false)
+            console.log(state)
         })
      }, [])
 
     const handleSubmit = (values) => {
         console.log(values)
-        sessionService.updateSession(state.uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, values.uuid_room)
+        sessionService.updateSession(state.uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, state.session_creator, values.uuid_room)
         .then(response => {
-            console.log(response)
-            navigate('/admin-tools')
+            if(response.status == 200) {
+                navigate('/admin-tools')
+            } else if (response.status == 400) {
+                OpenModal();
+            }
         }).catch(error => {
             console.log(error)
+            OpenModal();
         })
     }
     const override = css`
@@ -48,7 +59,7 @@ export default function EditSession() {
         session_name: state.session_name,
         date: moment(state.date).local().format("YYYY-MM-DD"),
         time: state.time,
-        room_name: state.room.room_name
+        uuid_room: state.uuid_room
     }
 
     const deleteSession = () => {
@@ -91,7 +102,7 @@ export default function EditSession() {
                         <BackBtn link='/admin-tools'/>
                         <Row>
                             <Col>
-                                <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
+                                <img src={require('../../assets/wl-white.png')} style={{width:'20vw'}} className='mx-auto '/>      
                             </Col>
                         </Row>
                         <Row className='edit-panel'>
@@ -186,7 +197,7 @@ export default function EditSession() {
                                                      <Form.Select 
                                                         aria-label="Default select example"
                                                         name="room_name" 
-                                                        value={values.room_name} 
+                                                        value={values.uuid_room} 
                                                         onChange={handleChange}
                                                         isValid={touched.room_name && !errors.room_name} 
                                                         isInvalid={touched.room_name && !!errors.room_name} 
@@ -224,6 +235,26 @@ export default function EditSession() {
                                 </Row>
                             </Col>
                         </Row>
+
+                        <Modal
+                            show={openModal}
+                            onHide={CloseModal}
+                            backdrop="static"
+                            keyboard={false}
+                            centered
+                        >
+                            <Modal.Body>
+                            Failed! The room seems to be taken or the user has other sessions for the same date and time!
+                            </Modal.Body>
+                            <div className='d-flex justify-content-center'>
+                            <Button 
+                            className="welearn-btn m-2 w-25"
+                            onClick={CloseModal}>
+                                Try Again
+                            </Button>
+                            </div>
+                        </Modal>
+
                     </Container>
                 )}
             </Formik>

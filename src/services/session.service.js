@@ -24,19 +24,39 @@ const updateSession = (
     session_name,
     date,
     time,
+    session_creator,
     uuid_room
 ) => {
     return axios.put(SESSION_URL+ `/${uuid_session}`, {
         session_name,
         date,
         time,
+        session_creator,
         uuid_room
     })
 }
+
+const createSession = (
+    session_name,
+    date,
+    time,
+    session_creator,
+    uuid_room
+) => {
+    return axios.post(SESSION_URL, {
+        session_name,
+        date,
+        time,
+        session_creator,
+        uuid_room
+    })
+}
+
 
 export default {
     getSession,
     deleteSession,
     getAllSessions,
-    updateSession
+    updateSession,
+    createSession
 }

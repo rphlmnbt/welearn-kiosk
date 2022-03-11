@@ -38,14 +38,17 @@ export default function AddSession() {
 
     const handleSubmit = (values) => {
         console.log(values)
-        // sessionService.updateSession(uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, values.uuid_room)
-        // .then(response => {
-        //     console.log(response)
-        //     navigate('/admin-tools')
-        // }).catch(error => {
-        //     OpenModal();
-        // })
-        OpenModal();
+        sessionService.createSession(values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, values.uuid_room)
+        .then(response => {
+            if(response.status == 200) {
+                navigate('/admin-tools')
+            } else if (response.status == 400) {
+                OpenModal();
+            }
+        }).catch(error => {
+            OpenModal();
+        })
+        
     }
     const override = css`
         display: block;
@@ -57,7 +60,7 @@ export default function AddSession() {
         session_name: '',
         date: '',
         time: '',
-        room_name: ''
+        uuid_room: ''
     }
 
 
@@ -185,7 +188,7 @@ export default function AddSession() {
                                                      <Form.Select 
                                                         aria-label="Default select example"
                                                         name="room_name" 
-                                                        value={values.room_name} 
+                                                        value={values.uuid_room} 
                                                         onChange={handleChange}
                                                         isValid={touched.room_name && !errors.room_name} 
                                                         isInvalid={touched.room_name && !!errors.room_name} 

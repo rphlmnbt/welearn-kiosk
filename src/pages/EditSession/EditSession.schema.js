@@ -5,7 +5,7 @@ const schema = yup.object().shape({
 
     session_name: yup.string()
                 .min(1, "Invalid")
-                .max(10, 'Too Long!')
+                .max(50, 'Too Long!')
                 .nullable(),
 
     date: yup.string()
