@@ -9,7 +9,7 @@ const sessionReducer = (state = initialState, action) => {
         case SET_SESSION:
             return {
                 ...state,
-                session: action.payload.session,
+                session: action.payload,
             };
         default:
             return state;

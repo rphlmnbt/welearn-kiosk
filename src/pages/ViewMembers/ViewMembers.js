@@ -5,26 +5,25 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import paginationFactory, {  } from 'react-bootstrap-table2-paginator';
 import sessionService from '../../services/session.service';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function ViewMembers() {
 
-    useEffect(() => {
-        sessionService.getAllSessions()
-        .then(response => {
-            setData(response.data)
-        }).catch(error => {
-            console.log(error)
-        })
-    }, []);
+    const session = useSelector(state => state.session.session)
 
     const [data, setData] = useState([]);
 
+    useEffect(() => {
+        setData(session.users)
+
+    }, []);
+
+
     const columns = [
-        { dataField: 'session_name', text: 'Session Name'}, 
-        { dataField: 'room.room_name', text: 'Room Name'}, 
-        { dataField: 'time', text: 'Time'},
-        { dataField: 'date', text: 'Date'}
+        { dataField: 'user_detail.first_name', text: 'First Name'}, 
+        // { dataField: 'room.room_name', text: 'Room Name'}, 
+        // { dataField: 'time', text: 'Time'},
+        // { dataField: 'date', text: 'Date'}
     ];
 
     const defaultSorted = [{
