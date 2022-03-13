@@ -10,9 +10,9 @@ import moment from 'moment';
 import sessionService from '../../services/session.service';
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function EditSession() {
-    const { state } = useLocation();
     const formRef = useRef()
     const [rooms, setRooms] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -24,20 +24,22 @@ export default function EditSession() {
     const OpenModal = () => setOpenModal(true);
     const CloseModal = () => setOpenModal(false);
 
+    const session = useSelector(state => state.session.session)
+
     useEffect(() => {
-        console.log(moment(state.date).local().toDate())
+        console.log(session)
         roomService.getRooms()
         .then(response => {
             setRooms(response.data)
             console.log(response.data)
             setLoading(false)
-            console.log(state)
+            
         })
      }, [])
 
     const handleSubmit = (values) => {
         console.log(values)
-        sessionService.updateSession(state.uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, state.session_creator, values.uuid_room)
+        sessionService.updateSession(session.uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, session.session_creator, values.uuid_room)
         .then(response => {
             if(response.status == 200) {
                 navigate('/admin-tools')
@@ -56,14 +58,14 @@ export default function EditSession() {
         `;
 
     const initialValues = {
-        session_name: state.session_name,
-        date: moment(state.date).local().format("YYYY-MM-DD"),
-        time: state.time,
-        uuid_room: state.uuid_room
+        session_name: session.session_name,
+        date: moment(session.date).local().format("YYYY-MM-DD"),
+        time: session.time,
+        uuid_room: session.uuid_room
     }
 
     const deleteSession = () => {
-        sessionService.deleteSession(state.uuid_session)
+        sessionService.deleteSession(session.uuid_session)
         .then(response => {
             if (response.status == 200) {
                 navigate('/admin-tools')
@@ -215,7 +217,15 @@ export default function EditSession() {
                                             </Col>
                                         </Row>
                                         <Row className='d-flex justify-content-center'>
-                                            <Col className=' d-flex justify-content-end'>
+                                            <Col className=' d-flex justify-content-start'>
+                                                <Button 
+                                                    className="sub-btn my-2"
+                                                    onClick={()=>navigate('/view-members')}
+                                                >
+                                                    View Members
+                                                </Button>
+                                            </Col>
+                                            <Col className=' d-flex justify-content-center'>
                                                 <Button 
                                                     type="submit" 
                                                     className="welearn-btn my-2"
@@ -223,7 +233,7 @@ export default function EditSession() {
                                                     Apply Changes
                                                 </Button>
                                             </Col>
-                                            <Col>
+                                            <Col className=' d-flex justify-content-end'>
                                                 <Button 
                                                     className="sub-btn my-2"
                                                     onClick={deleteSession}

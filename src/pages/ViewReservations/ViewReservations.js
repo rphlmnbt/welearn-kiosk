@@ -41,6 +41,7 @@ export default function ViewReservations() {
         prePageText: '<',
         showTotal: true,
         alwaysShowAllBtns: true,
+        hideSizePerPage: true,
       });
 
     const { SearchBar, ClearSearchButton } = Search;

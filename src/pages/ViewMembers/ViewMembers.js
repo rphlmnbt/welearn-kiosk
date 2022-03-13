@@ -1,36 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import './AdminTools.scss'
+import { Container, Row, Col } from 'react-bootstrap'
 import BackBtn from '../../components/BackBtn/BackBtn';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import paginationFactory, {  } from 'react-bootstrap-table2-paginator';
-import sessionService from '../../services/session.service';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { setSession } from '../../actions/sessionAction';
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function AdminTools() {
+export default function ViewMembers() {
 
-    useEffect(() => {
-        sessionService.getAllSessions()
-        .then(response => {
-            setData(response.data)
-        }).catch(error => {
-            console.log(error)
-        })
-    }, []);
-
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const session = useSelector(state => state.session.session)
 
     const [data, setData] = useState([]);
 
+    useEffect(() => {
+        setData(session.users)
+
+    }, []);
+
+
     const columns = [
-        { dataField: 'session_name', text: 'Session Name'}, 
-        { dataField: 'room.room_name', text: 'Room Name'}, 
-        { dataField: 'time', text: 'Time'},
-        { dataField: 'date', text: 'Date'}
+        { dataField: 'user_detail.first_name', text: 'First Name'}, 
+        { dataField: 'user_detail.last_name', text: 'Last Name'},
+        { dataField: 'email', text: 'Email'},
+        { dataField: 'user_detail.contact_number', text: 'Contact Number'},
+        { dataField: 'user_detail.course', text: 'Course'},
+
     ];
 
     const defaultSorted = [{
@@ -52,22 +46,9 @@ export default function AdminTools() {
 
     const { SearchBar, ClearSearchButton } = Search;
 
-    const selectRow = {
-        mode: 'radio',
-        clickToSelect: true,
-        onSelect: (row, isSelect, rowIndex, e) => {
-          const session = row
-          dispatch(setSession(session))
-          navigate('/edit-session')
-        },
-        bgColor: '#EF4765'
-      };
-
-      
-
     return (
         <Container className='reservations'>
-            <BackBtn link='/'/>
+            <BackBtn link='/edit-session'/>
             <Row>
                 <Col>
                     <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
@@ -85,38 +66,32 @@ export default function AdminTools() {
                         {
                             props => (
                                 <>
-                                    <div className="ml-2 my-2 w-100" style={{float:'left'}}>
-                                        < Row >
-                                            <Col sm={5} >
+                                    <div className="ml-2 my-2" style={{float:'left'}}>
+                                        < Row>
+                                            <Col lg={10} sm={12} >
                                                 <SearchBar  
                                                     {...props.searchProps} 
                                                     style={{ width: "200px"}}
                                                     
                                                 />
                                             </Col>
-                                            <Col className='pl-0'>
+                                            <Col lg={2} sm={12}>
                                                 <ClearSearchButton 
                                                     {...props.searchProps} 
                                                     className="welearn-btn"
                                                 />
-                                                <Button onClick={()=>navigate('/add-session')}
-                                                    className="welearn-btn font-weight-bold m-1"
-                                                >＋
-                                                </Button>
                                             </Col>
-                                            
                                         </Row> 
                                     </div>
                                     <div className="mx-2">
                                         <BootstrapTable 
                                             defaultSorted={defaultSorted}
                                             pagination={pagination}
-                                            selectRow={ selectRow }
                                             {...props.baseProps}
                                             cellStyle={{
                                                 textOverflow: 'ellipsis',
                                                 whiteSpace: 'nowrap',
-                                                overflow: 'hidden'
+                                                overflow: 'hidden'            
                                             }}
                                             noDataIndication={ 'no results found' }
                                             
