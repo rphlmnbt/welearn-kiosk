@@ -10,6 +10,7 @@ import ViewReservations from './pages/ViewReservations/ViewReservations';
 import AdminTools from './pages/AdminTools/AdminTools';
 import EditSession from './pages/EditSession/EditSession';
 import AddSession from './pages/AddSession/AddSession';
+import ViewMembers from './pages/ViewMembers/ViewMembers';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/admin-tools' element={<AdminTools />} />
           <Route path='/edit-session' element={<EditSession />} />
           <Route path='/add-session' element={<AddSession />} />
+          <Route path='/view-members' element={<ViewMembers />} />
         </Routes>
       </Router>
     </div>
