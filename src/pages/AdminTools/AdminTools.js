@@ -47,6 +47,7 @@ export default function AdminTools() {
         prePageText: '<',
         showTotal: true,
         alwaysShowAllBtns: true,
+        hideSizePerPage: true,
       });
 
     const { SearchBar, ClearSearchButton } = Search;

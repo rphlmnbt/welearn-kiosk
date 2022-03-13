@@ -4,7 +4,6 @@ import BackBtn from '../../components/BackBtn/BackBtn';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import paginationFactory, {  } from 'react-bootstrap-table2-paginator';
-import sessionService from '../../services/session.service';
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function ViewMembers() {
@@ -21,9 +20,11 @@ export default function ViewMembers() {
 
     const columns = [
         { dataField: 'user_detail.first_name', text: 'First Name'}, 
-        // { dataField: 'room.room_name', text: 'Room Name'}, 
-        // { dataField: 'time', text: 'Time'},
-        // { dataField: 'date', text: 'Date'}
+        { dataField: 'user_detail.last_name', text: 'Last Name'},
+        { dataField: 'email', text: 'Email'},
+        { dataField: 'user_detail.contact_number', text: 'Contact Number'},
+        { dataField: 'user_detail.course', text: 'Course'},
+
     ];
 
     const defaultSorted = [{
@@ -40,6 +41,7 @@ export default function ViewMembers() {
         prePageText: '<',
         showTotal: true,
         alwaysShowAllBtns: true,
+        hideSizePerPage: true,
       });
 
     const { SearchBar, ClearSearchButton } = Search;
