@@ -69,9 +69,6 @@ export default function AdminTools() {
         <Container className='reservations'>
             <BackBtn link='/'/>
             <Row>
-                <Col>
-                    <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
-                </Col>
             </Row>
             <Row className='rw'>
                 <Col>
@@ -85,7 +82,7 @@ export default function AdminTools() {
                         {
                             props => (
                                 <>
-                                    <div className="ml-2 my-2 w-100" style={{float:'left'}}>
+                                    <div className="ml-2 my-2 w-100" style={{float:'left', fontSize: "20px"}}>
                                         < Row >
                                             <Col sm={5} >
                                                 <SearchBar  
@@ -107,7 +104,7 @@ export default function AdminTools() {
                                             
                                         </Row> 
                                     </div>
-                                    <div className="mx-2">
+                                    <div className="mx-2" style={{fontSize: "20px"}}>
                                         <BootstrapTable 
                                             defaultSorted={defaultSorted}
                                             pagination={pagination}

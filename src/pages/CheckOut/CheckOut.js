@@ -21,13 +21,6 @@ export default function CheckOut() {
                 }}
             />
             <BackBtn link='/'/>
-            <Row className='w-100'>
-                <Col>
-                    <div className='w-100 justify-content-center align-items-center text-center'>
-                        <img src={require('../../assets/wl-white.png')} style={{width:'30vw'}} className='mx-auto '/>      
-                    </div>
-                </Col>
-            </Row>
             <Row className='w-100 p-2'>
                 <Col>
                     <div className='qrcode-scanner mx-auto p-3'>

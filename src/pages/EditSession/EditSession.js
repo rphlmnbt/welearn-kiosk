@@ -102,11 +102,6 @@ export default function EditSession() {
                 }) => ( 
                     <Container className='edit'>
                         <BackBtn link='/admin-tools'/>
-                        <Row>
-                            <Col>
-                                <img src={require('../../assets/wl-white.png')} style={{width:'20vw'}} className='mx-auto '/>      
-                            </Col>
-                        </Row>
                         <Row className='edit-panel'>
                             <Col>
                                 <Row>
