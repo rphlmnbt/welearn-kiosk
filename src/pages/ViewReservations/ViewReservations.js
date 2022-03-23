@@ -29,7 +29,7 @@ export default function ViewReservations() {
 
     const defaultSorted = [{
         dataField: 'name',
-        order: 'desc'
+        order: 'desc',
     }];
 
     const pagination = paginationFactory({
@@ -49,11 +49,6 @@ export default function ViewReservations() {
     return (
         <Container className='reservations'>
             <BackBtn link='/'/>
-            <Row>
-                <Col>
-                    <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
-                </Col>
-            </Row>
             <Row className='rw'>
                 <Col>
                 <ToolkitProvider
@@ -66,7 +61,7 @@ export default function ViewReservations() {
                         {
                             props => (
                                 <>
-                                    <div className="ml-2 my-2" style={{float:'left'}}>
+                                    <div className="ml-2 my-2" style={{float:'left', fontSize: "20px"}}>
                                         < Row>
                                             <Col lg={10} sm={12} >
                                                 <SearchBar  
@@ -83,7 +78,7 @@ export default function ViewReservations() {
                                             </Col>
                                         </Row> 
                                     </div>
-                                    <div className="mx-2">
+                                    <div className="mx-2" style={{fontSize: "20px"}}>
                                         <BootstrapTable 
                                             defaultSorted={defaultSorted}
                                             pagination={pagination}
@@ -91,7 +86,8 @@ export default function ViewReservations() {
                                             cellStyle={{
                                                 textOverflow: 'ellipsis',
                                                 whiteSpace: 'nowrap',
-                                                overflow: 'hidden'            
+                                                overflow: 'hidden',
+                                                            
                                             }}
                                             noDataIndication={ 'no results found' }
                                             
