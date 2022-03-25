@@ -1,3 +1,3 @@
 window.env = {
-  "API_URL": "http://192.168.43.39:8080/api"
+  "API_URL": "http://54.251.215.234:80/api"
 };
