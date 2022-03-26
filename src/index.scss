@@ -13,8 +13,8 @@ body {
   font-family: $font-stack;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: center/ cover no-repeat url(./assets/bg.svg)
-
+  background: center/ cover no-repeat url(./assets/bg.svg);
+  max-height: 100vh;
 }
 
 code {
