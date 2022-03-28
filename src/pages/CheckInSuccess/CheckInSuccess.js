@@ -8,7 +8,7 @@ import './CheckInSuccess.scss'
 export default function CheckInSuccess({location}) {
     const { state } = useLocation();
     useEffect(async ()=> {
-        await notificationService.sendNotifications(state.users)
+        await notificationService.sendNotifications(state.users, 'Your sessions is about to start! Please proceed to the designated study room.')
     }, [])
     console.log(state);
     return (
