@@ -49,11 +49,6 @@ export default function ViewMembers() {
     return (
         <Container className='reservations'>
             <BackBtn link='/edit-session'/>
-            <Row>
-                <Col>
-                    <img src={require('../../assets/wl-white.png')} style={{width:'25vw'}} className='mx-auto '/>      
-                </Col>
-            </Row>
             <Row className='rw'>
                 <Col>
                 <ToolkitProvider
@@ -83,7 +78,7 @@ export default function ViewMembers() {
                                             </Col>
                                         </Row> 
                                     </div>
-                                    <div className="mx-2">
+                                    <div className="mx-2" style={{fontSize: "20px"}}>
                                         <BootstrapTable 
                                             defaultSorted={defaultSorted}
                                             pagination={pagination}

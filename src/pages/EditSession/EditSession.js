@@ -11,6 +11,7 @@ import sessionService from '../../services/session.service';
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector, useDispatch } from 'react-redux'
+import notificationService from '../../services/notification.service';
 
 export default function EditSession() {
     const formRef = useRef()
@@ -42,6 +43,7 @@ export default function EditSession() {
         sessionService.updateSession(session.uuid_session, values.session_name, moment(values.date).format('MMM D, YYYY'), values.time, session.session_creator, values.uuid_room)
         .then(response => {
             if(response.status == 200) {
+                notificationService.sendNotifications(session.users, 'Your session has been edited by an administrator! Please view the updated details on the app.')
                 navigate('/admin-tools')
             } else if (response.status == 400) {
                 OpenModal();

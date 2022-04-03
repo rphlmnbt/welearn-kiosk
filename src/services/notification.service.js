@@ -4,10 +4,12 @@ import env from "react-dotenv";
 const NOTIFCATION_URL = env.API_URL + '/notification'
 
 const sendNotifications = (
-    users
+    users,
+    message
 ) => {
     return axios.post(NOTIFCATION_URL, {
-        users
+        users,
+        message
     })
 }
 

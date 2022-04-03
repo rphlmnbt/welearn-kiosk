@@ -20,12 +20,19 @@ export default function AdminLogin() {
     const handleShow = () => setShow(true);
     const dispatch = useDispatch()
 
+
     const [openModal, setOpenModal] = useState(false);
 
     const OpenModal = () => setOpenModal(true);
     const CloseModal = () => setOpenModal(false);
 
+    const handleChange = (event) => {
+        console.log("here")
+        console.log("Form::onChange", event);
+    };
+ 
     const handleSubmit = (values) => {
+        console.log(values)
         adminService.logIn(values.email,values.password)
         .then(response => {
             
@@ -42,8 +49,8 @@ export default function AdminLogin() {
 
     return (
         <Formik
-            validationSchema={schema}
             onSubmit={handleSubmit}
+            onChange={handleChange}
             innerRef = {formRef}
             initialValues={{
                 email: '',
@@ -112,7 +119,6 @@ export default function AdminLogin() {
                                         name="email" 
                                         value={values.email} 
                                         onChange={handleChange} 
-                                        isInvalid={touched.email && !!errors.email} 
                                         placeholder="Enter Email"
                                     />
                                 </Form.Group>
@@ -125,7 +131,6 @@ export default function AdminLogin() {
                                         name="password" 
                                         value={values.password} 
                                         onChange={handleChange} 
-                                        isInvalid={touched.password && !!errors.password} 
                                         placeholder="Enter Password"
                                     />
                                 </Form.Group>
